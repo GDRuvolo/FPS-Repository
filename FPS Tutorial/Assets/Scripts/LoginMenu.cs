@@ -5,6 +5,7 @@ using UnityEngine;
 using System; //allows string.Split to be used with SplitStringOptions.none
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using DatabaseControl;//This line is always needed for any C# script using the database control requests. See PDF documentation for more information
 //use 'import DatabaseControl;' if you are using JS
 
@@ -16,6 +17,7 @@ public class LoginMenu : MonoBehaviour
     public GameObject login_object;
     public GameObject register_object;
     public GameObject loading_object;
+    public Button login_button;
 
     //these are the login input fields:
     public UnityEngine.UI.InputField input_login_username;
@@ -63,8 +65,17 @@ public class LoginMenu : MonoBehaviour
 
     void Update()
     {
+        //check fields aren't blank
+        if ((input_login_username.text != "") && (input_login_password.text != ""))
+        {
+            login_button.interactable = true;
+        }
+        else
+        {
+            login_button.interactable = false;
+        }
 
-        if (isDatabaseSetup == true)
+            if (isDatabaseSetup == true)
         {
 
             //enables and disables the defferent objects to show correct part
