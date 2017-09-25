@@ -181,8 +181,10 @@ public class LoginMenu : MonoBehaviour
             {
                 yield return e.Current;
             }
-            WWW returned = e.Current as WWW;
-            if (returned.text == "Success")
+
+            string returned = e.Current.ToString();
+
+            if (returned == "Success")
             {
                 //Password was correct
                 blankErrors();
@@ -193,25 +195,25 @@ public class LoginMenu : MonoBehaviour
 
                 UserAccountManager.instance.LogIn(username, password);
             }
-            if (returned.text == "incorrectUser")
+            if (returned == "incorrectUser")
             {
                 //Account with username not found in database
                 login_error.text = "Username not found";
                 part = 0; //back to login UI
             }
-            if (returned.text == "incorrectPass")
+            if (returned == "incorrectPass")
             {
                 //Account with username found, but password incorrect
                 part = 0; //back to login UI
                 login_error.text = "Incorrect Password";
             }
-            if (returned.text == "ContainsUnsupportedSymbol")
+            if (returned == "ContainsUnsupportedSymbol")
             {
                 //One of the parameters contained a - symbol
                 part = 0; //back to login UI
                 login_error.text = "Unsupported Symbol '-'";
             }
-            if (returned.text == "Error")
+            if (returned == "Error")
             {
                 //Account Not Created, another error occurred
                 part = 0; //back to login UI
@@ -314,9 +316,10 @@ public class LoginMenu : MonoBehaviour
             {
                 yield return ee.Current;
             }
-            WWW returnedd = ee.Current as WWW;
 
-            if (returnedd.text == "Success")
+            string returnedd =ee.Current.ToString();
+
+            if (returnedd == "Success")
             {
                 //Account created successfully
 
@@ -327,20 +330,21 @@ public class LoginMenu : MonoBehaviour
                 input_register_username.text = ""; //password field is blanked at the end of this function, even when error is returned
 
                 UserAccountManager.instance.LogIn(username, password);
+                //sendLoginRequest(username, password);
             }
-            if (returnedd.text == "usernameInUse")
+            if (returnedd == "usernameInUse")
             {
                 //Account Not Created due to username being used on another Account
                 part = 1;
                 register_error.text = "Username Unavailable. Try another.";
             }
-            if (returnedd.text == "ContainsUnsupportedSymbol")
+            if (returnedd == "ContainsUnsupportedSymbol")
             {
                 //Account Not Created as one of the parameters contained a - symbol
                 part = 1;
                 register_error.text = "Unsupported Symbol '-'";
             }
-            if (returnedd.text == "Error")
+            if (returnedd == "Error")
             {
                 //Account Not Created, another error occurred
                 part = 1;
