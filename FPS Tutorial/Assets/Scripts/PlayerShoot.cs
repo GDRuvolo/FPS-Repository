@@ -96,7 +96,7 @@ public class PlayerShoot : NetworkBehaviour
     [Client]
     void Shoot()
     {
-        Debug.Log("SHOOT");
+        //Debug.Log("SHOOT");
    
         if(!isLocalPlayer || weaponManager.isReloading)
         {
@@ -112,7 +112,7 @@ public class PlayerShoot : NetworkBehaviour
 
         currentWeapon.bullets--;
 
-        Debug.Log("Remanining bullets: " + currentWeapon.bullets);
+        //Debug.Log("Remanining bullets: " + currentWeapon.bullets);
 
         // Shooting, call the OnShoot Method on the server
         CmdOnShoot();
